@@ -56,15 +56,15 @@ function ListMembers() {
         setIdMember(id);
         setName(name);
         setRole(role);
-        setClick(true)
         setOperation("UPDATE")
+        setClick(true)
     }
 
     const addMember = (id) => {
         setName("");
         setRole("");
-        setClick(true)
         setOperation("ADD")
+        setClick(true)
     }
 
 

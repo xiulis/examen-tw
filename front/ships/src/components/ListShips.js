@@ -8,6 +8,9 @@ function ListShips() {
     const [click, setClick] = useState(false);
     const [refresh, setRefresh] = useState(false);
     const [id, setId] = useState(0)
+    const [name, setName]= useState("");
+    const [deplacement, setDeplacement]= useState("")
+    const [operation, setOperation] = useState("")
     const navigate = useNavigate();
 
     const getShips = () => {
@@ -57,12 +60,17 @@ function ListShips() {
        deleteReq(id)
 
     }
-    const updateShip = (id) => {
-        console.log("update"+ id)
+    const updateShip = (id, name, deplacement) => {
+        console.log("update"+ id + name + deplacement)
+        setName(name)
+        setDeplacement(deplacement);
+        setOperation("UDPATE")
     }
 
     const addShip = () => {
-        console.log("add"+ id)
+        setName("")
+        setDeplacement("");
+        setOperation("ADD")
         setClick(true);
     }
 
@@ -89,7 +97,7 @@ function ListShips() {
                         <td>
                             <button onClick={() =>redirect(item.id)}>details</button>
                             <button onClick={() => deleteShip(item.id)}>delete</button>
-                            <button onClick={() =>updateShip(item.id)}>update</button>
+                            <button onClick={() =>updateShip(item.id, item.name, item.displacement)}>update</button>
                         </td>
                     </tr>
                 ))}
@@ -100,7 +108,7 @@ function ListShips() {
                 <button id="Add" onClick={() =>addShip()}>Add ship</button>
             </div>
             <div className="form-ship">
-                {click ? <FormShip  close={handleClick} click={click} refresh={handleRefresh}/> : null}
+                {click ? <FormShip  close={handleClick} click={click} refresh={handleRefresh} _name={name} _depla={deplacement} operation={operation}/> : null}
             </div>
         </div>
     );
